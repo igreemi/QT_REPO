@@ -1,3 +1,0 @@
-C:\cmake-3.26.0-rc2-x86_64\bin\cmake.exe -E rm -f CMakeFiles\Q_Widget.dir/objects.a
-C:\Qt\Tools\mingw1120_64\bin\ar.exe qc CMakeFiles\Q_Widget.dir/objects.a @CMakeFiles\Q_Widget.dir\objects1.rsp
-C:\Qt\Tools\mingw1120_64\bin\g++.exe -DQT_QML_DEBUG -g -Wl,--whole-archive CMakeFiles\Q_Widget.dir/objects.a -Wl,--no-whole-archive -o Q_Widget.exe -Wl,--out-implib,libQ_Widget.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\Q_Widget.dir\linkLibs.rsp

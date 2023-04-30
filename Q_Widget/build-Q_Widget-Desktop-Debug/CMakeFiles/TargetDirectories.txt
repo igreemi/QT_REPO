@@ -1,8 +1,0 @@
-C:/kurs_cpp/Home_Work_CPP/Qt/Q_Widget/build-Q_Widget-Desktop-Debug/CMakeFiles/Q_Widget.dir
-C:/kurs_cpp/Home_Work_CPP/Qt/Q_Widget/build-Q_Widget-Desktop-Debug/CMakeFiles/edit_cache.dir
-C:/kurs_cpp/Home_Work_CPP/Qt/Q_Widget/build-Q_Widget-Desktop-Debug/CMakeFiles/rebuild_cache.dir
-C:/kurs_cpp/Home_Work_CPP/Qt/Q_Widget/build-Q_Widget-Desktop-Debug/CMakeFiles/list_install_components.dir
-C:/kurs_cpp/Home_Work_CPP/Qt/Q_Widget/build-Q_Widget-Desktop-Debug/CMakeFiles/install.dir
-C:/kurs_cpp/Home_Work_CPP/Qt/Q_Widget/build-Q_Widget-Desktop-Debug/CMakeFiles/install/local.dir
-C:/kurs_cpp/Home_Work_CPP/Qt/Q_Widget/build-Q_Widget-Desktop-Debug/CMakeFiles/install/strip.dir
-C:/kurs_cpp/Home_Work_CPP/Qt/Q_Widget/build-Q_Widget-Desktop-Debug/CMakeFiles/Q_Widget_autogen.dir
