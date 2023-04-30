@@ -1,8 +1,0 @@
-C:/kurs_cpp/Home_Work_CPP/Qt/QT_Designer/Build/Debug/CMakeFiles/QT_Designer.dir
-C:/kurs_cpp/Home_Work_CPP/Qt/QT_Designer/Build/Debug/CMakeFiles/edit_cache.dir
-C:/kurs_cpp/Home_Work_CPP/Qt/QT_Designer/Build/Debug/CMakeFiles/rebuild_cache.dir
-C:/kurs_cpp/Home_Work_CPP/Qt/QT_Designer/Build/Debug/CMakeFiles/list_install_components.dir
-C:/kurs_cpp/Home_Work_CPP/Qt/QT_Designer/Build/Debug/CMakeFiles/install.dir
-C:/kurs_cpp/Home_Work_CPP/Qt/QT_Designer/Build/Debug/CMakeFiles/install/local.dir
-C:/kurs_cpp/Home_Work_CPP/Qt/QT_Designer/Build/Debug/CMakeFiles/install/strip.dir
-C:/kurs_cpp/Home_Work_CPP/Qt/QT_Designer/Build/Debug/CMakeFiles/QT_Designer_autogen.dir
