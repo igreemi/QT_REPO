@@ -1,0 +1,2 @@
+# Hashes of file build rules.
+8fcc11c352faccbe1b7a6b438a02a8c3 CMakeFiles/QT_Designer_autogen
