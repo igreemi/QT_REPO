@@ -1,12 +1,10 @@
-#include "mainwindow.h"
-
-#include <QApplication>
+#include <QCoreApplication>
 #include <QNetworkInterface>
 #include <QSqlDatabase>
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
+    QCoreApplication a(argc, argv);
 
     QNetworkInterface interface;
 
