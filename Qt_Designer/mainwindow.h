@@ -18,8 +18,7 @@ public:
 
 private slots:
 
-
-    void on_pb_ok_clicked();
+    void on_pb_connectDb_clicked();
 
 private:
     Ui::MainWindow *ui;

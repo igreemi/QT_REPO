@@ -14,9 +14,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-
-
-void MainWindow::on_pb_ok_clicked()
+void MainWindow::on_pb_connectDb_clicked()
 {
     dialog->show();
 }

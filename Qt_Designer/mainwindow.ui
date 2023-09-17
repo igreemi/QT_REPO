@@ -15,89 +15,6 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="9" column="1" colspan="2">
-     <layout class="QFormLayout" name="formLayout_2">
-      <item row="0" column="0">
-       <widget class="QLabel" name="lb_hostName">
-        <property name="text">
-         <string>Имя хоста</string>
-        </property>
-        <property name="buddy">
-         <cstring>le_hostName</cstring>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QLineEdit" name="le_hostName"/>
-      </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="lb_dbName">
-        <property name="text">
-         <string>Имя БД</string>
-        </property>
-        <property name="buddy">
-         <cstring>le_dbName</cstring>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QLineEdit" name="le_dbName"/>
-      </item>
-      <item row="2" column="0">
-       <widget class="QLabel" name="lb_login">
-        <property name="text">
-         <string>Логин</string>
-        </property>
-        <property name="buddy">
-         <cstring>le_login</cstring>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="1">
-       <widget class="QLineEdit" name="le_login"/>
-      </item>
-      <item row="3" column="0">
-       <widget class="QLabel" name="lb_pass">
-        <property name="text">
-         <string>Пароль</string>
-        </property>
-        <property name="buddy">
-         <cstring>le_pass</cstring>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="1">
-       <widget class="QLineEdit" name="le_pass"/>
-      </item>
-      <item row="4" column="0">
-       <widget class="QLabel" name="lb_potrDb">
-        <property name="text">
-         <string>Порт БД</string>
-        </property>
-        <property name="buddy">
-         <cstring>sb_portDb</cstring>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="1">
-       <widget class="QSpinBox" name="sb_portDb"/>
-      </item>
-      <item row="5" column="0">
-       <widget class="QPushButton" name="pb_ok">
-        <property name="text">
-         <string>Oк</string>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="1">
-       <widget class="QPushButton" name="pb_cancel">
-        <property name="text">
-         <string>Отмена</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
     <item row="8" column="1" colspan="2">
      <spacer name="verticalSpacer_2">
       <property name="orientation">
@@ -150,6 +67,24 @@
       </property>
      </spacer>
     </item>
+    <item row="9" column="1" colspan="2">
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="0" column="0">
+       <widget class="QPushButton" name="pb_connectDb">
+        <property name="text">
+         <string>Подключиться</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QPushButton" name="pb_cancel">
+        <property name="text">
+         <string>Отмена</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -179,8 +114,8 @@
    <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>239</x>
-     <y>212</y>
+     <x>197</x>
+     <y>158</y>
     </hint>
     <hint type="destinationlabel">
      <x>197</x>
