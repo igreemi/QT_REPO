@@ -1,4 +1,0 @@
-C:/kurs_cpp/Qt/UDP_Client/build-PreUDPsocket-Desktop-Debug/CMakeFiles/PreUDPsocket.dir
-C:/kurs_cpp/Qt/UDP_Client/build-PreUDPsocket-Desktop-Debug/CMakeFiles/edit_cache.dir
-C:/kurs_cpp/Qt/UDP_Client/build-PreUDPsocket-Desktop-Debug/CMakeFiles/rebuild_cache.dir
-C:/kurs_cpp/Qt/UDP_Client/build-PreUDPsocket-Desktop-Debug/CMakeFiles/PreUDPsocket_autogen.dir
