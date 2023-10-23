@@ -1,3 +1,0 @@
-C:\cmake-3.26.0-rc2-x86_64\bin\cmake.exe -E rm -f CMakeFiles\PreUDPsocket.dir/objects.a
-C:\Qt\Tools\mingw1120_64\bin\ar.exe qc CMakeFiles\PreUDPsocket.dir/objects.a @CMakeFiles\PreUDPsocket.dir\objects1.rsp
-C:\Qt\Tools\mingw1120_64\bin\g++.exe -DQT_QML_DEBUG -g -Wl,--whole-archive CMakeFiles\PreUDPsocket.dir/objects.a -Wl,--no-whole-archive -o PreUDPsocket.exe -Wl,--out-implib,libPreUDPsocket.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\PreUDPsocket.dir\linkLibs.rsp
