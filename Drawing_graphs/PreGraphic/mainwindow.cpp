@@ -8,24 +8,32 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     ui->pb_clearResult->setCheckable(true);
 
-    //Выделим память под наши объекты.
+    chart = new QChart();
+    chart->legend()->setVisible(false);
 
-     //Объект QChart является основным, в котором хранятся все данные графиков и который отвечает
-     //за само поле отображения графика, управляет осями, легенодой и прочими атрибутами графика.
-     chart = new QChart( );
-     chart->legend()->setVisible(false);
-     //Объект QChartView является виджетом отображальщиком графика. В его конструктор необходимо передать ссылку
-     //на объект QChart.
-     chartView = new QChartView(chart);
-     //И создадим объект нашего класса.
-     graphClass = new GraphicChart(NUM_GRAPHS);
-     //chart -> chartVuiew -> данные для отображения
+    series = new QLineSeries(this);
 
-     layout = new QGridLayout;
- //    ui->wid_chart->setLayout(layout);
-     layout->addWidget(chartView);
-     chartView->show();
+    chartView = new QChartView(chart);
 
+    grph = new graphic();
+    grph->setWidget(chartView);
+    grph->show();
+
+    connect(this, &MainWindow::sig_displayChartSlot, this,
+            &MainWindow::displayChartSlot);
+
+    connect(this, &MainWindow::sig_readChartSlot, this,
+            &MainWindow::readChartSlot);
+
+    connect(this, &MainWindow::sig_displayClearChartSlot, this,
+            &MainWindow::displayClearChartSlot);
+
+    step = ui->sB_step->value();
+
+    if(step <= 0.000){
+        step = 0.001;
+        ui->sB_step->setValue(0.001);
+    }
 
 }
 
@@ -33,8 +41,9 @@ MainWindow::~MainWindow()
 {
     delete ui;
     delete chart;
-    delete graphClass;
+    delete series;
     delete chartView;
+    delete grph;
 }
 
 
@@ -54,18 +63,20 @@ QVector<uint32_t> MainWindow::ReadFile(QString path, uint8_t numberChannel)
 
     if(file.isOpen() == false){
 
-        if(pathToFile.isEmpty()){
+        if(pathToFile.isEmpty())
+        {
             QMessageBox mb;
             mb.setWindowTitle("Ошибка");
             mb.setText("Ошибка открытия фала");
             mb.exec();
         }
     }
-    else{
+    else
+    {
 
         //продумать как выйти из функции
-    }
 
+    }
     QDataStream dataStream;
     dataStream.setDevice(&file);
     dataStream.setByteOrder(QDataStream::LittleEndian);
@@ -104,7 +115,9 @@ QVector<uint32_t> MainWindow::ReadFile(QString path, uint8_t numberChannel)
         }
     }
     ui->chB_readSucces->setChecked(true);
+    file.close();
     return readData;
+
 }
 
 QVector<double> MainWindow::ProcessFile(const QVector<uint32_t> dataFile)
@@ -203,6 +216,23 @@ void MainWindow::on_pb_path_clicked()
     ui->le_path->setText(pathToFile);
 }
 
+void MainWindow::displayChartSlot()
+{
+    chartView->chart()->createDefaultAxes();
+    chartView->show( );
+}
+
+void MainWindow::displayClearChartSlot()
+{
+    series->clear();
+    chart->removeSeries(series);
+}
+
+void MainWindow::readChartSlot()
+{
+ui->chB_readChart->setChecked(true);
+}
+
 /****************************************************/
 /*!
 @brief:	Обработчик клика на кнопку "Старт"
@@ -224,6 +254,7 @@ void MainWindow::on_pb_start_clicked()
     ui->chB_procFileSucces->setChecked(false);
     ui->chB_readSucces->setChecked(false);
     ui->chB_minSucess->setChecked(false);
+    ui->chB_readChart->setChecked(false);
 
     int selectIndex = ui->cmB_numCh->currentIndex();
     //Маски каналов
@@ -244,27 +275,41 @@ void MainWindow::on_pb_start_clicked()
                                                 maxs = FindMax(res);
                                                 mins = FindMin(res);
                                                 DisplayResult(mins, maxs);
-                                                double minVal = mins[0];
-                                                double maxVal = maxs[0];
-                                                double step = 0.001;
-                                                if(chart->series().isEmpty() == false){
-                                                    graphClass->ClearGraph(chart);
+
+                                                /*
+                                                 * Тут необходимо реализовать код наполнения серии
+                                                 * и вызов сигнала для отображения графика
+                                                 */
+
+                                                if(chart->series().isEmpty() == false)
+                                                {
+                                                    series->clear();
+                                                    chart->removeSeries(series);
                                                 }
-                                                QVector<double> x;
-                                                QVector<double> y;
-                                                double steps = round(((maxVal-minVal)/step));
-                                                x.resize(steps);
-                                                x[0] = minVal;
-                                                for(int i = 1; i<steps; i++){
-                                                    x[i] = x[i-1]+step;
+
+                                                procesData.clear();
+                                                procesData.resize(FD);
+
+                                                for(int i = 0; i < FD; i++)
+                                                {
+                                                    procesData[i] = res[i];
                                                 }
-                                                y.resize(steps);
-                                                for(int i = 0; i<steps; i++){
-                                                    y[i] = res[i];
+                                                step = ui->sB_step->value();
+
+                                                double steps = FD*step;
+                                                double i = step;
+                                                int j = 0;
+                                                while(i < steps)
+                                                {
+                                                    series->append(i, procesData[j]);
+                                                    i += step;
+                                                    j++;
                                                 }
-                                                graphClass->AddDataToGrahp(x,y, FIRST_GRAPH);
-                                                graphClass->UpdateGraph(chart);
-ViewGraph();
+
+                                                chart->addSeries(series);
+
+                                                emit sig_readChartSlot();
+                                                emit sig_displayChartSlot();
                                              };
 
     auto result = QtConcurrent::run(read)
@@ -275,15 +320,10 @@ ViewGraph();
 
 }
 
-void MainWindow::ViewGraph()
-{
-    chartView->chart()->createDefaultAxes();
- //   chartView->resize(400, 400);
-    chartView->show( );
-}
+
 
 void MainWindow::on_pb_clearResult_clicked()
 {
-    graphClass->ClearGraph(chart);
+    emit sig_displayClearChartSlot();
 }
 

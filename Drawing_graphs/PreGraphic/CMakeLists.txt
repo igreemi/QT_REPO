@@ -17,8 +17,9 @@ set(PROJECT_SOURCES
         mainwindow.cpp
         mainwindow.h
         mainwindow.ui
-        graphicchart.h
-        graphicchart.cpp
+        graphic.h
+        graphic.cpp
+        graphic.ui
 )
 
 
@@ -29,7 +30,6 @@ add_executable(PreGraphic
 
 target_link_libraries(PreGraphic Qt6::Widgets
                                       Qt6::Concurrent
-                                      Qt6::Charts
-                                      )
+                                      Qt6::Charts)
 
 

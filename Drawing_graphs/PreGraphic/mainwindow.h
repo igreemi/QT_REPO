@@ -10,12 +10,11 @@
 #include <algorithm>
 
 ///Подключаем все что нужно для графиков
-#include "graphicchart.h"
 #include <QLineSeries>
 #include <QtCharts>
 #include <QChartView>
 
-#define NUM_GRAPHS 1
+#include "graphic.h"
 
 #define FD 1000.0 //частота дискретизации
 
@@ -41,15 +40,20 @@ public:
     //Метод отображает результаты
     void DisplayResult(QVector<double> mins, QVector<double> maxs);
 
-
-
 private slots:
     void on_pb_path_clicked();
     void on_pb_start_clicked();
-
-
+    void displayChartSlot();
+    void displayClearChartSlot();
+    void readChartSlot();
 
     void on_pb_clearResult_clicked();
+
+signals:
+  void sig_displayChartSlot();
+  void sig_displayClearChartSlot();
+  void sig_readChartSlot();
+
 
 private:
     Ui::MainWindow *ui;
@@ -60,13 +64,13 @@ private:
     QVector<double> procesData;
     QVector<double> mins, maxs;
 
-    void BuildAGraph(QVector<double> res, double min, double max, double st);
-    void ViewGraph(void);
-
-    GraphicChart* graphClass;
+    QLineSeries* series;
     QChart* chart;
     QChartView* chartView;
-    QGridLayout *layout;
+ //   QGridLayout *layout;
+
+    graphic *grph;
+    double step;
 
 };
 #endif // MAINWINDOW_H
