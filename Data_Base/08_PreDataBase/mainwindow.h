@@ -5,7 +5,7 @@
 #include <QMessageBox>
 #include <QtConcurrent>
 #include "database.h"
-#include "dbdata.h"
+#include "dialog.h"
 
 
 
@@ -42,7 +42,7 @@ private:
     QVector<QString> dataForConnect; //Данные для подключения к БД.
 
     Ui::MainWindow *ui;
-    DbData *dataDb;
+    Dialog *dataDb;
     DataBase* dataBase;
     QMessageBox* msg;
 

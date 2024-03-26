@@ -3,15 +3,13 @@
 DataBase::DataBase(QObject *parent)
     : QObject{parent}
 {
-    model = new QSqlTableModel();
-    qModel = new QSqlQueryModel();
+    qModel = new QSqlQueryModel(this);
     dataBase = new QSqlDatabase();
     tView = new QTableView();
 }
 
 DataBase::~DataBase()
 {
-    delete model;
     delete qModel;
     delete dataBase;
 }
@@ -63,6 +61,18 @@ QSqlError DataBase::GetLastError()
     return dataBase->lastError();
 }
 
+void DataBase::RequestFromDB(QString request)
+{
+    qModel->setQuery(request, *dataBase);
+
+    qModel->setHeaderData(0, Qt::Horizontal, tr("Название фильма"));
+    qModel->setHeaderData(1, Qt::Horizontal, tr("Описание фильма"));
+
+    tView->setModel(qModel);
+
+    emit sig_SendDataFromDB(tView);
+}
+
 void DataBase::ClearTable()
 {
     if(model->columnCount() > 0)
@@ -90,16 +100,7 @@ void DataBase::ReadAnswerFromDB(int requestType)
                           "JOIN film_category fc on f.film_id = fc.film_id "
                           "JOIN category c on c.category_id = fc.category_id WHERE c.name = 'Horror'";
 
-        qModel = new QSqlQueryModel(this);
-
-        qModel->setQuery(request, *dataBase);
-
-        qModel->setHeaderData(0, Qt::Horizontal, tr("Название фильма"));
-        qModel->setHeaderData(1, Qt::Horizontal, tr("Описание фильма"));
-
-        tView->setModel(qModel);
-
-        emit sig_SendDataFromDB(tView);
+        RequestFromDB(request);
 
         break;
     }
@@ -109,21 +110,17 @@ void DataBase::ReadAnswerFromDB(int requestType)
                           "JOIN film_category fc on f.film_id = fc.film_id "
                           "JOIN category c on c.category_id = fc.category_id WHERE c.name = 'Comedy'";
 
-        qModel = new QSqlQueryModel(this);
-
-        qModel->setQuery(request, *dataBase);
-
-        qModel->setHeaderData(0, Qt::Horizontal, tr("Название фильма"));
-        qModel->setHeaderData(1, Qt::Horizontal, tr("Описание фильма"));
-
-        tView->setModel(qModel);
-
-        emit sig_SendDataFromDB(tView);
+        RequestFromDB(request);
 
         break;
     }
     case requestAllFilms:
     {
+        if(model != nullptr)
+        {
+            delete model;
+        }
+
         model = new QSqlTableModel(this, *dataBase);
 
         model->setTable("film");

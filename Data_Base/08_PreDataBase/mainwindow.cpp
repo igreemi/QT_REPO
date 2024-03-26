@@ -9,7 +9,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->lb_statusConnect->setStyleSheet("color:red");
     ui->pb_request->setEnabled(false);
 
-    dataDb = new DbData(this);
+    dataDb = new Dialog(this);
     dataBase = new DataBase(this);
     msg = new QMessageBox(this);
 
@@ -17,7 +17,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     dataBase->AddDataBase(POSTGRE_DRIVER, DB_NAME);
 
-    connect(dataDb, &DbData::sig_sendData, this, [&](QVector<QString> receivData){
+    connect(dataDb, &Dialog::sig_sendData, this, [&](QVector<QString> receivData){
         dataForConnect = receivData;
     });
 

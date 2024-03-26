@@ -64,6 +64,7 @@ private:
     QSqlTableModel *model;
     QSqlQueryModel *qModel;
     QTableView *tView;
+    void RequestFromDB(QString request);
 
 };
 
